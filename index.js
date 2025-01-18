@@ -4,6 +4,7 @@ const connection = require('./db');
 const userRoute = require('./routes/userRoute');
 const newsRoute = require('./routes/newsRoute');
 const jobRoute = require('./routes/jobRoute');
+const pollRoute = require('./routes/pollRoute');
 const alumniRoute = require('./routes/alumniRoute');
 require('dotenv').config();
 
@@ -15,11 +16,11 @@ app.use(express.json());
 
 const frontendUrl=process.env.FRONTENDURI;
 const allowedOrigins = [
-    frontendUrl
+    frontendUrl, 'http://localhost:3000', 
 ]
 app.use(cors({
     origin: function(origin, callback){
-        if(!origin || allowedOrigins.includes(origin) || true){
+        if(!origin || allowedOrigins.includes(origin)){
             callback(null, true);
         }else{
             callback(new Error('Not allowed by CORS'));
@@ -34,6 +35,7 @@ app.use(cors({
 app.use('/user',userRoute);
 app.use('/news',newsRoute);
 app.use('/job',jobRoute);
+app.use('/poll',pollRoute);
 app.use('/alumni',alumniRoute);
 
 //---------------------------------------------------Milldewares--------------------------------------------------
