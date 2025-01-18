@@ -16,7 +16,7 @@ app.use(express.json());
 
 const frontendUrl=process.env.FRONTENDURI;
 const allowedOrigins = [
-    frontendUrl, 'http://localhost:3000', 
+    frontendUrl, 'http://localhost:3000', 'https://almamatter.netlify.app'
 ]
 app.use(cors({
     origin: function(origin, callback){
